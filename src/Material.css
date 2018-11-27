@@ -1,0 +1,19 @@
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+.material-icons.md-dark.md-inactiveclose { color: rgba(0, 0, 0, 0.26) }
+.material-icons.md-dark.md-inactiveclose:hover { color: rgba(0, 0, 0, 0.54); cursor: pointer }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+/* Rules for using add icons. */
+.material-icons.md-add { color: rgb(19, 160, 0) }
+.material-icons.md-add:hover { color: rgb(0, 255, 85); cursor: pointer }

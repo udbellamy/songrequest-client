@@ -1,0 +1,30 @@
+.App {
+  font-family: "PT Serif", sans-serif;
+  font-size: 1.4rem
+}
+
+.App-header {
+  width: 100%;
+}
+
+.App-body{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%
+}
+
+.App-searchBlock{
+}
+
+.App-searchInner{ 
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.App-inputBox{
+  margin: 1rem;
+  width: 20rem;
+}
