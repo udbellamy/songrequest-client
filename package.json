@@ -123,6 +123,5 @@
       "mobx"
     ]
   },
-  "proxy": "http://undeadwoody-songrequest-api.herokuapp.com",
   "devDependencies": {}
 }
