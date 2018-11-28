@@ -1,7 +1,13 @@
 import axios from 'axios';
 import StoreFunctions from './StoreFunctions.js';
 
-function searchFullOrFiltered (artist, song) {
+function searchFullOrFiltered (event, artist, song) {
+  event.preventDefault();
+  StoreFunctions.changeStoreValue({
+    storeKey: "search",
+    value: true,
+    store: "SearchStore"
+  }) 
   if ( artist || song ) {
     this.searchSongs(artist, song)
   }
@@ -17,6 +23,11 @@ function getSonglist () {
       value: axiosTestResult.data.SongList,
       store: "ResultStore"
     })
+    StoreFunctions.changeStoreValue({
+      storeKey: "search",
+      value: false,
+      store: "SearchStore"
+    }) 
   })
 }
 
@@ -27,6 +38,11 @@ function searchSongs (artist, song) {
       value: axiosTestResult.data.SongList,
       store: "ResultStore"
     })
+    StoreFunctions.changeStoreValue({
+      storeKey: "search",
+      value: false,
+      store: "SearchStore"
+    }) 
   })
 }
 

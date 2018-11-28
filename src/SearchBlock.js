@@ -4,6 +4,8 @@ import { inject, observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import DatabaseFunctions from './utils/DatabaseFunctions.js';
+import CircularIndeterminate from './ProgressIcon.js';
+import StoreFunctions from './utils/StoreFunctions.js';
 
 import Button from '@material-ui/core/Button';
 
@@ -17,13 +19,26 @@ const styles = theme => ({
   },
 });
 
-
 @inject('SearchStore', 'UserStore')
 @observer
 class SearchBlock extends React.Component {
 
-  state = {
-    clicked: false
+  handleKeyPress = (e) => {
+    const { SearchStore } = this.props;
+    if (e.key === 'Enter') {
+      DatabaseFunctions.searchFullOrFiltered(e, SearchStore.artist, SearchStore.song)
+    }
+  }
+
+  buttonContent() {
+    const { SearchStore, ResultStore } = this.props;
+    if ( SearchStore.search === false ) {
+      return <div>Rechercher</div>
+    }
+
+    else if ( SearchStore.search === true ) {
+      return <CircularIndeterminate />
+    }
   }
   
   render() {
@@ -31,16 +46,17 @@ class SearchBlock extends React.Component {
     return(
       <div className="App-searchBlock">
         <div className="App-searchInner">
-          <Search name="artist" label="Artiste" placeholder="AC/DC" storename="SearchStore" store={SearchStore} search={true} />
-          <Search name="song" label="Chanson" placeholder="Highway to hell" storename="SearchStore" store={SearchStore} search={true} />
+          <Search onKeyPress={e => this.handleKeyPress(e)} name="artist" label="Artiste" placeholder="AC/DC" storename="SearchStore" store={SearchStore} search={true} />
+          <Search onKeyPress={e => this.handleKeyPress(e)} name="song" label="Chanson" placeholder="Highway to hell" storename="SearchStore" store={SearchStore} search={true} />
         </div>
         <Button
-            onClick={e => DatabaseFunctions.searchFullOrFiltered(SearchStore.artist, SearchStore.song)}
+            onSubmit={e => DatabaseFunctions.searchFullOrFiltered(e, SearchStore.artist, SearchStore.song)}
             variant="contained"
             color="primary"
+            ref={node => { this.submitButton = node; }}
             className={classes.button}
-          > Rechercher
-          </Button>
+          > {this.buttonContent()}
+        </Button>
       </div>
     )
   }

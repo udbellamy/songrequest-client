@@ -2,7 +2,8 @@ import { observable } from 'mobx';
 
 const searchStore = observable({ 
   artist: "",
-  song: ""
+  song: "",
+  search: false
 });
 
 export default searchStore;

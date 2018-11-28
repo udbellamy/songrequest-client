@@ -9,7 +9,7 @@ import StoreFunctions from './utils/StoreFunctions.js';
 class Search extends React.Component {
 
   render() {
-    const { name, label, placeholder, store, storename, search } = this.props;
+    const { name, label, placeholder, store, storename, search, onKeyPress } = this.props;
     return(
         <div className="App-inputBox">
           <TextField
@@ -19,6 +19,7 @@ class Search extends React.Component {
             placeholder={placeholder}
             value={store[name]}
             variant="outlined"
+            onKeyPress={onKeyPress}
             onChange={e => StoreFunctions.changeStoreValue({
               storeKey: name,
               value: e.target.value,

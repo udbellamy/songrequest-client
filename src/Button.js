@@ -21,6 +21,7 @@ class Button extends React.Component {
         <Button
           variant="contained"
           color="primary"
+          type="submit"
           className={classes.button}
         >{this.props.text}</Button>
     )

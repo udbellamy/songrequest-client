@@ -23,12 +23,22 @@ const styles = theme => ({
 @observer
 class NicknamePrompt extends React.Component {
 
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      StoreFunctions.changeStoreValue({
+        storeKey: "nicknameSet",
+        value: true,
+        store: "UserStore"
+      }) 
+    }
+  }
+
   render() {
     const { classes, UserStore } = this.props;
     return(
       <div>
         <p>Comment tu t'appelles mon ptit gars ?</p>
-        <Search name="nickname" label="Pseudo" placeholder="Woody" storename="UserStore" store={UserStore} />
+        <Search onKeyPress={e => this.handleKeyPress(e)} name="nickname" label="Pseudo" placeholder="Woody" storename="UserStore" store={UserStore} />
         <Button
           onClick={e => StoreFunctions.changeStoreValue({
               storeKey: "nicknameSet",
@@ -36,6 +46,7 @@ class NicknamePrompt extends React.Component {
               store: "UserStore"
           })}
           variant="contained"
+          type="submit"
           color="primary"
           className={classes.button}
         > Go </Button>
