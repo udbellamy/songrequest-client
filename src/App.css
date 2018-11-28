@@ -24,6 +24,10 @@
   justify-content: center;
 }
 
+.App-pageButtons{
+  padding-left: 2rem
+}
+
 .App-inputBox{
   margin: 1rem;
   width: 20rem;

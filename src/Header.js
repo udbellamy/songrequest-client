@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import ButtonAppBar from './AppBar';
 
 const styles = {
   root: {
@@ -12,17 +13,15 @@ const styles = {
 };
 
 function Header(props) {
-  const { classes } = props;
+  const { classes, page } = props;
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="primary">
-        <Toolbar>
-          <Typography variant="headline" color="inherit">
-            Guitar Hero Song Request
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <ButtonAppBar 
+        position="static" 
+        color="primary" 
+        title="Guitar Hero Song Request"
+      />
     </div>
   );
 }

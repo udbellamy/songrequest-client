@@ -17,13 +17,20 @@ WebFont.load({
 });
 
 class App extends Component {
+
+  devTools() {
+    if (process.env.NODE_ENV != "production") {
+      return <DevTools />
+    }
+  }
+
   render() {
     return (
       <Provider {...storeBank}>
         <div className="App">
           <div className="App-header">
             <Header />
-            {/* <DevTools /> */}
+            {this.devTools()}
           </div>
           <div className="App-body">
             <Body />

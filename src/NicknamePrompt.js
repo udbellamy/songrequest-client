@@ -26,9 +26,9 @@ class NicknamePrompt extends React.Component {
   handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       StoreFunctions.changeStoreValue({
-        storeKey: "nicknameSet",
-        value: true,
-        store: "UserStore"
+        storeKey: "page",
+        value: "search",
+        store: "ViewStore"
       }) 
     }
   }
