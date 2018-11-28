@@ -50,10 +50,9 @@ class SearchBlock extends React.Component {
           <Search onKeyPress={e => this.handleKeyPress(e)} name="song" label="Chanson" placeholder="Highway to hell" storename="SearchStore" store={SearchStore} search={true} />
         </div>
         <Button
-            onSubmit={e => DatabaseFunctions.searchFullOrFiltered(e, SearchStore.artist, SearchStore.song)}
+            onClick={e => DatabaseFunctions.searchFullOrFiltered(e, SearchStore.artist, SearchStore.song)}
             variant="contained"
             color="primary"
-            ref={node => { this.submitButton = node; }}
             className={classes.button}
           > {this.buttonContent()}
         </Button>
