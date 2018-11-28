@@ -13,7 +13,7 @@ function CircularIndeterminate(props) {
   const { classes } = props;
   return (
     <div>
-      <CircularProgress className={classes.progress} color="white" size="8"/>
+      <CircularProgress className={classes.progress} color="inherit"/>
     </div>
   );
 }
