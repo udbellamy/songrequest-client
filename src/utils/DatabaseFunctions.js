@@ -11,7 +11,7 @@ function searchFullOrFiltered (artist, song) {
 }
 
 function getSonglist () {
-  axios.get(`https://songrequest-backend.herokuapp.com/api/getSonglist`).then(function (axiosTestResult) {
+  axios.get(`/api/getSonglist`).then(function (axiosTestResult) {
     StoreFunctions.changeStoreValue({
       storeKey: "rows",
       value: axiosTestResult.data.SongList,
@@ -21,7 +21,7 @@ function getSonglist () {
 }
 
 function searchSongs (artist, song) {
-  axios.get(`https://songrequest-backend.herokuapp.com/api/searchSongs?artist=${artist}&song=${song}`).then(function (axiosTestResult) {
+  axios.get(`/api/searchSongs?artist=${artist}&song=${song}`).then(function (axiosTestResult) {
     StoreFunctions.changeStoreValue({
       storeKey: "rows",
       value: axiosTestResult.data.SongList,

@@ -127,5 +127,6 @@
       "mobx"
     ]
   },
+  "proxy": "https://songrequest-backend.herokuapp.com",
   "devDependencies": {}
 }
