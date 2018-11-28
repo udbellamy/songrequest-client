@@ -2,6 +2,7 @@
   "name": "songrequest",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://undeadwoody-songrequest.herokuapp.com/",
   "engines": {
     "node": "8.10.0"
   },
