@@ -29,8 +29,28 @@ class NicknamePrompt extends React.Component {
         storeKey: "page",
         value: "search",
         store: "ViewStore"
-      }) 
+      })
+      
+      StoreFunctions.changeStoreValue({
+        storeKey: "nicknameSet",
+        value: true,
+        store: "UserStore"
+    })
     }
+  }
+
+  handleClick() {
+    StoreFunctions.changeStoreValue({
+      storeKey: "page",
+      value: "search",
+      store: "ViewStore"
+    })
+
+    StoreFunctions.changeStoreValue({
+      storeKey: "nicknameSet",
+      value: true,
+      store: "UserStore"
+  })
   }
 
   render() {
@@ -40,11 +60,7 @@ class NicknamePrompt extends React.Component {
         <p>Comment tu t'appelles mon ptit gars ?</p>
         <Search onKeyPress={e => this.handleKeyPress(e)} name="nickname" label="Pseudo" placeholder="Woody" storename="UserStore" store={UserStore} />
         <Button
-          onClick={e => StoreFunctions.changeStoreValue({
-              storeKey: "nicknameSet",
-              value: true,
-              store: "UserStore"
-          })}
+          onClick={e => this.handleClick()}
           variant="contained"
           type="submit"
           color="primary"
