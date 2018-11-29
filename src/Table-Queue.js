@@ -135,8 +135,7 @@ class CustomPaginationActionsTable extends React.Component {
 
   handleDeleteClick(rows, _id) {
     const { QueueStore } = this.props;
-    let rowDelete = rows.findIndex(x => x._id==_id)
-    console.log(rowDelete)
+    let rowDelete = rows.findIndex(x => x._id===_id)
     QueueStore["rows"].splice(rowDelete, 1);
     DatabaseFunctions.deleteSongFromQueue(_id)
   };

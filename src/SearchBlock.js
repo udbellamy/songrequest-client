@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import DatabaseFunctions from './utils/DatabaseFunctions.js';
 import CircularIndeterminate from './ProgressIcon.js';
-import StoreFunctions from './utils/StoreFunctions.js';
 
 import Button from '@material-ui/core/Button';
 
@@ -31,7 +30,7 @@ class SearchBlock extends React.Component {
   }
 
   buttonContent() {
-    const { SearchStore, ResultStore } = this.props;
+    const { SearchStore } = this.props;
     if ( SearchStore.search === false ) {
       return <div>Rechercher</div>
     }

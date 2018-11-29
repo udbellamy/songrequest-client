@@ -134,19 +134,21 @@ class CustomPaginationActionsTable extends React.Component {
     })
   };
 
-  handleAddClick(_id) {
-    const { UserStore } = this.props;
+  handleAddClick(rows, _id) {
+    const { UserStore, ResultStore } = this.props;
+    let rowToQueue = rows.findIndex(x => x._id===_id)
     DatabaseFunctions.postSongToQueue(_id, UserStore.nickname)
+    ResultStore.rows[rowToQueue].inqueue = true
   };
 
-  songButton(_id, inqueue) {
+  songButton(rows, _id, inqueue) {
     if ( inqueue ) {
       return <QueueMusic className="material-icons md-light md-inactive" />
     }
     else {
       return <AddCircle 
         className="material-icons md-add"
-        onClick={e => this.handleAddClick(_id)} />
+        onClick={e => this.handleAddClick(rows, _id)} />
     }
   };
 
@@ -172,7 +174,7 @@ class CustomPaginationActionsTable extends React.Component {
                   <TableRow key={row._id}>
                     <TableCell>{row.artist}</TableCell>
                     <TableCell>{row.song}</TableCell>
-                    <TableCell>{this.songButton(row._id, row.inqueue)}</TableCell>
+                    <TableCell>{this.songButton(rows, row._id, row.inqueue)}</TableCell>
                   </TableRow>
                 );
               })}

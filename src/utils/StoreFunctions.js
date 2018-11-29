@@ -8,6 +8,14 @@ function changeStoreValue (storeChanges) {
 
 }
 
+function changeStoreValueInArray (storeChanges) {
+
+  const {store, value} = storeChanges
+
+  storeBank[store].arrayObject = value
+
+}
+
 function deleteFromStore (storeChanges) {
 
   const {store, indexNumber, array} = storeChanges
@@ -27,6 +35,7 @@ function clearStore (store) {
 export default {
 
   changeStoreValue,
+  changeStoreValueInArray,
   clearStore,
   deleteFromStore
 

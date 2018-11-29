@@ -19,7 +19,7 @@ WebFont.load({
 class App extends Component {
 
   devTools() {
-    if (process.env.NODE_ENV != "production") {
+    if (process.env.NODE_ENV !== "production") {
       return <DevTools />
     }
   }
