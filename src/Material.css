@@ -12,7 +12,7 @@
 
 /* Rules for using icons as white on a dark background. */
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
-.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+.material-icons.md-light.md-inactive { color: rgba(119, 119, 119, 1); }
 
 /* Rules for using add icons. */
 .material-icons.md-add { color: rgb(19, 160, 0) }

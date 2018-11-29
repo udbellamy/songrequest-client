@@ -14,8 +14,7 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-import AddCircle from '@material-ui/icons/AddCircle';
-import QueueMusic from '@material-ui/icons/QueueMusic';
+import DeleteForever from '@material-ui/icons/AddCircle';
 import './Material.css';
 import { inject, observer } from 'mobx-react';
 import StoreFunctions from './utils/StoreFunctions.js';
@@ -133,15 +132,6 @@ class CustomPaginationActionsTable extends React.Component {
     })
   };
 
-  songButton(song, artist, inqueue) {
-    if ( inqueue ) {
-      return <QueueMusic className="material-icons md-light md-inactive" />
-    }
-    else {
-      return <AddCircle className="material-icons md-add" />
-    }
-  }
-
   render() {
     const { classes, ResultStore } = this.props;
     const { rows, rowsPerPage, page } = ResultStore;
@@ -163,7 +153,6 @@ class CustomPaginationActionsTable extends React.Component {
                   <TableRow key={row._id}>
                     <TableCell>{row.artist}</TableCell>
                     <TableCell>{row.song}</TableCell>
-                    <TableCell>{this.songButton(row.song, row.artist, row.inqueue)}</TableCell>
                   </TableRow>
                 );
               })}
