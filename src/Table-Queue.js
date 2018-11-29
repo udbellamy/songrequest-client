@@ -18,6 +18,7 @@ import DeleteForever from '@material-ui/icons/DeleteForever';
 import './Material.css';
 import { inject, observer } from 'mobx-react';
 import StoreFunctions from './utils/StoreFunctions.js';
+import DatabaseFunctions from './utils/DatabaseFunctions.js';
 
 const actionsStyles = theme => ({
   root: {
@@ -132,6 +133,14 @@ class CustomPaginationActionsTable extends React.Component {
     })
   };
 
+  handleDeleteClick(rows, _id) {
+    const { QueueStore } = this.props;
+    let rowDelete = rows.findIndex(x => x._id==_id)
+    console.log(rowDelete)
+    QueueStore["rows"].splice(rowDelete, 1);
+    DatabaseFunctions.deleteSongFromQueue(_id)
+  };
+
   render() {
     const { classes, QueueStore } = this.props;
     const { rows, rowsPerPage, page } = QueueStore;
@@ -158,7 +167,7 @@ class CustomPaginationActionsTable extends React.Component {
                     <TableCell>{row.artist}</TableCell>
                     <TableCell>{row.song}</TableCell>
                     <TableCell>{row.user}</TableCell>
-                    <TableCell><DeleteForever className="material-icons md-delete"/></TableCell>
+                    <TableCell><DeleteForever className="material-icons md-delete" onClick={e => this.handleDeleteClick(rows, row._id)}/></TableCell>
                   </TableRow>
                 );
               })}

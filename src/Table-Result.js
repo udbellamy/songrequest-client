@@ -114,7 +114,7 @@ const styles = theme => ({
   },
 });
 
-@inject('ResultStore')
+@inject('ResultStore', 'UserStore')
 @observer
 class CustomPaginationActionsTable extends React.Component {
 
@@ -135,7 +135,8 @@ class CustomPaginationActionsTable extends React.Component {
   };
 
   handleAddClick(_id) {
-    DatabaseFunctions.postSongToQueue(_id, "Toto")
+    const { UserStore } = this.props;
+    DatabaseFunctions.postSongToQueue(_id, UserStore.nickname)
   };
 
   songButton(_id, inqueue) {

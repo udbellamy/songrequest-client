@@ -48,7 +48,7 @@ function searchSongs (artist, song) {
 
 function postSongToQueue (_id, user ) {
   axios.get(`https://songrequest-backend.herokuapp.com/api/getSongById?_id=${_id}`).then(function (axiosTestResult) {
-    axios.post(`https://songrequest-backend.herokuapp.com/api/postSongToQueue?artist=${axiosTestResult.data.Song.artist}&song=${axiosTestResult.data.Song.song}&user="toto"`)
+    axios.post(`https://songrequest-backend.herokuapp.com/api/postSongToQueue?artist=${axiosTestResult.data.Song.artist}&song=${axiosTestResult.data.Song.song}&user=${user}`)
   })
 }
 
@@ -62,13 +62,19 @@ function getQueue () {
   })
 }
 
+function deleteSongFromQueue (_id ) {
+  axios.delete(`https://songrequest-backend.herokuapp.com/api/deleteSongById?_id=${_id}`)
+}
+
+
 export default {
 
   getSonglist,
   searchSongs,
   searchFullOrFiltered,
   getQueue,
-  postSongToQueue
+  postSongToQueue,
+  deleteSongFromQueue
 
 }
 
