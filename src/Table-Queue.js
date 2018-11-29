@@ -14,7 +14,7 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-import DeleteForever from '@material-ui/icons/AddCircle';
+import DeleteForever from '@material-ui/icons/DeleteForever';
 import './Material.css';
 import { inject, observer } from 'mobx-react';
 import StoreFunctions from './utils/StoreFunctions.js';
@@ -112,7 +112,7 @@ const styles = theme => ({
   },
 });
 
-@inject('ResultStore')
+@inject('QueueStore')
 @observer
 class CustomPaginationActionsTable extends React.Component {
 
@@ -120,7 +120,7 @@ class CustomPaginationActionsTable extends React.Component {
     StoreFunctions.changeStoreValue({
       storeKey: "page",
       value: page,
-      store: "ResultStore"
+      store: "QueueStore"
     });
   };
 
@@ -128,13 +128,13 @@ class CustomPaginationActionsTable extends React.Component {
     StoreFunctions.changeStoreValue({
       storeKey: "rowsPerPage",
       value: event.target.value,
-      store: "ResultStore"
+      store: "QueueStore"
     })
   };
 
   render() {
-    const { classes, ResultStore } = this.props;
-    const { rows, rowsPerPage, page } = ResultStore;
+    const { classes, QueueStore } = this.props;
+    const { rows, rowsPerPage, page } = QueueStore;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
     return (
@@ -143,16 +143,22 @@ class CustomPaginationActionsTable extends React.Component {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
+                <TableCell>Lien</TableCell>
                 <TableCell>Artiste</TableCell>
                 <TableCell>Chanson</TableCell>
+                <TableCell>User</TableCell>
+                <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
                 return (
                   <TableRow key={row._id}>
+                    <TableCell>{row.link}</TableCell>
                     <TableCell>{row.artist}</TableCell>
                     <TableCell>{row.song}</TableCell>
+                    <TableCell>{row.user}</TableCell>
+                    <TableCell><DeleteForever className="material-icons md-delete"/></TableCell>
                   </TableRow>
                 );
               })}

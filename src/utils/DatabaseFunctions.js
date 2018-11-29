@@ -46,12 +46,29 @@ function searchSongs (artist, song) {
   })
 }
 
+function postSongToQueue (_id, user ) {
+  axios.get(`https://songrequest-backend.herokuapp.com/api/getSongById?_id=${_id}`).then(function (axiosTestResult) {
+    axios.post(`https://songrequest-backend.herokuapp.com/api/postSongToQueue?artist=${axiosTestResult.data.Song.artist}&song=${axiosTestResult.data.Song.song}&user="toto"`)
+  })
+}
+
+function getQueue () {
+  axios.get(`https://songrequest-backend.herokuapp.com/api/getQueue`).then(function (axiosTestResult) {
+    StoreFunctions.changeStoreValue({
+      storeKey: "rows",
+      value: axiosTestResult.data.Queue,
+      store: "QueueStore"
+    })
+  })
+}
 
 export default {
 
   getSonglist,
   searchSongs,
-  searchFullOrFiltered
+  searchFullOrFiltered,
+  getQueue,
+  postSongToQueue
 
 }
 

@@ -19,6 +19,7 @@ import QueueMusic from '@material-ui/icons/QueueMusic';
 import './Material.css';
 import { inject, observer } from 'mobx-react';
 import StoreFunctions from './utils/StoreFunctions.js';
+import DatabaseFunctions from './utils/DatabaseFunctions.js';
 
 const actionsStyles = theme => ({
   root: {
@@ -133,14 +134,20 @@ class CustomPaginationActionsTable extends React.Component {
     })
   };
 
-  songButton(song, artist, inqueue) {
+  handleAddClick(_id) {
+    DatabaseFunctions.postSongToQueue(_id, "Toto")
+  };
+
+  songButton(_id, inqueue) {
     if ( inqueue ) {
       return <QueueMusic className="material-icons md-light md-inactive" />
     }
     else {
-      return <AddCircle className="material-icons md-add" />
+      return <AddCircle 
+        className="material-icons md-add"
+        onClick={e => this.handleAddClick(_id)} />
     }
-  }
+  };
 
   render() {
     const { classes, ResultStore } = this.props;
@@ -155,6 +162,7 @@ class CustomPaginationActionsTable extends React.Component {
               <TableRow>
                 <TableCell>Artiste</TableCell>
                 <TableCell>Chanson</TableCell>
+                <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -163,7 +171,7 @@ class CustomPaginationActionsTable extends React.Component {
                   <TableRow key={row._id}>
                     <TableCell>{row.artist}</TableCell>
                     <TableCell>{row.song}</TableCell>
-                    <TableCell>{this.songButton(row.song, row.artist, row.inqueue)}</TableCell>
+                    <TableCell>{this.songButton(row._id, row.inqueue)}</TableCell>
                   </TableRow>
                 );
               })}
