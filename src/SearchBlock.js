@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import DatabaseFunctions from './utils/DatabaseFunctions.js';
 import CircularIndeterminate from './ProgressIcon.js';
+import MaxWidthDialog from './DialogBox.js';
 
 import Button from '@material-ui/core/Button';
 
@@ -36,7 +37,7 @@ class SearchBlock extends React.Component {
     }
 
     else if ( SearchStore.search === true ) {
-      return <CircularIndeterminate />
+      return <CircularIndeterminate/>
     }
   }
   
@@ -45,8 +46,8 @@ class SearchBlock extends React.Component {
     return(
       <div className="App-searchBlock">
         <div className="App-searchInner">
-          <Search onKeyPress={e => this.handleKeyPress(e)} name="artist" label="Artiste" placeholder="AC/DC" storename="SearchStore" store={SearchStore} search={true} />
-          <Search onKeyPress={e => this.handleKeyPress(e)} name="song" label="Chanson" placeholder="Highway to hell" storename="SearchStore" store={SearchStore} search={true} />
+          <Search onKeyPress={e => this.handleKeyPress(e)} name="artist" label="Artiste" placeholder="AC/DC" storename="SearchStore" store={SearchStore} search={true} style="App-inputBox" />
+          <Search onKeyPress={e => this.handleKeyPress(e)} name="song" label="Chanson" placeholder="Highway to hell" storename="SearchStore" store={SearchStore} search={true} style="App-inputBox" />
         </div>
         <Button
             onClick={e => DatabaseFunctions.searchFullOrFiltered(e, SearchStore.artist, SearchStore.song)}
@@ -55,6 +56,7 @@ class SearchBlock extends React.Component {
             className={classes.button}
           > {this.buttonContent()}
         </Button>
+        <MaxWidthDialog />
       </div>
     )
   }

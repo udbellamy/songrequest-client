@@ -19,3 +19,5 @@
 .material-icons.md-add:hover { color: rgb(0, 255, 85); cursor: pointer }
 .material-icons.md-delete { color: rgb(160, 0, 0) }
 .material-icons.md-delete:hover { color: rgb(255, 0, 0); cursor: pointer }
+.material-icons.md-link { color: rgb(3, 50, 124) }
+.material-icons.md-link:hover { color: rgb(40, 120, 250); cursor: pointer }

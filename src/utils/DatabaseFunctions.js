@@ -52,6 +52,10 @@ function postSongToQueue (_id, user ) {
   })
 }
 
+function postLinkToQueue (link, user ) {
+  axios.post(`https://songrequest-backend.herokuapp.com/api/postLinkToQueue?link=${link}&user=${user}`)
+}
+
 function getQueue () {
   axios.get(`https://songrequest-backend.herokuapp.com/api/getQueue`).then(function (axiosTestResult) {
     StoreFunctions.changeStoreValue({
@@ -74,7 +78,8 @@ export default {
   searchFullOrFiltered,
   getQueue,
   postSongToQueue,
-  deleteSongFromQueue
+  deleteSongFromQueue,
+  postLinkToQueue,
 
 }
 

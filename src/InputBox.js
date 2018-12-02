@@ -9,9 +9,9 @@ import StoreFunctions from './utils/StoreFunctions.js';
 class Search extends React.Component {
 
   render() {
-    const { name, label, placeholder, store, storename, search, onKeyPress } = this.props;
+    const { name, style, label, placeholder, store, storename, search, onKeyPress } = this.props;
     return(
-        <div className="App-inputBox">
+        <div className={style}>
           <TextField
             name={name}
             id={name}

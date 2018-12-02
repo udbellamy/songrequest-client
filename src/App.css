@@ -33,6 +33,11 @@
   width: 20rem;
 }
 
+.App-inputBoxWide{
+  margin: 1rem;
+  width: 100%;
+}
+
 .App-TableQueue{
   width: 80%;
 }

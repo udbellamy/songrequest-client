@@ -58,7 +58,7 @@ class NicknamePrompt extends React.Component {
     return(
       <div>
         <p>Comment tu t'appelles mon ptit gars ?</p>
-        <Search onKeyPress={e => this.handleKeyPress(e)} name="nickname" label="Pseudo" placeholder="Woody" storename="UserStore" store={UserStore} />
+        <Search onKeyPress={e => this.handleKeyPress(e)} name="nickname" label="Pseudo" placeholder="Woody" storename="UserStore" store={UserStore} style="App-inputBox" />
         <Button
           onClick={e => this.handleClick()}
           variant="contained"

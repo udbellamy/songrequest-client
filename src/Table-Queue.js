@@ -15,6 +15,7 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import DeleteForever from '@material-ui/icons/DeleteForever';
+import Link from '@material-ui/icons/Link';
 import './Material.css';
 import { inject, observer } from 'mobx-react';
 import StoreFunctions from './utils/StoreFunctions.js';
@@ -140,6 +141,14 @@ class CustomPaginationActionsTable extends React.Component {
     DatabaseFunctions.deleteSongFromQueue(_id)
   };
 
+  displayLinkIcon(link){
+    const { QueueStore } = this.props;
+    const { rows } = QueueStore;    
+    if ( link ) {
+        return <a href={link} target="Chorus"><Link className="material-icons md-link"/></a>
+    }
+  }
+
   render() {
     const { classes, QueueStore } = this.props;
     const { rows, rowsPerPage, page } = QueueStore;
@@ -162,7 +171,7 @@ class CustomPaginationActionsTable extends React.Component {
               {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
                 return (
                   <TableRow key={row._id}>
-                    <TableCell>{row.link}</TableCell>
+                    <TableCell>{this.displayLinkIcon(row.link)}</TableCell>
                     <TableCell>{row.artist}</TableCell>
                     <TableCell>{row.song}</TableCell>
                     <TableCell>{row.user}</TableCell>
