@@ -5,11 +5,11 @@ import NicknamePrompt from './NicknamePrompt';
 import { inject, observer } from 'mobx-react';
 import TableResult from './Table-Result';
 import TableQueue from './Table-Queue';
-import DatabaseFunctions from './utils/DatabaseFunctions.js';
 
-@inject('UserStore', 'ViewStore')
+@inject('UserStore', 'ViewStore', 'SearchStore')
 @observer
 class Body extends React.Component {
+ 
 
   render() {
     const { UserStore, ViewStore } = this.props;
@@ -32,14 +32,14 @@ class Body extends React.Component {
     }
 
     if ( UserStore.nickname && ViewStore.page === "queue" ) {
-      DatabaseFunctions.getQueue()
+
       return(
-        <div className="App-TableQueue">
-          <p>Voici la liste d'attente</p>
-          <div>
-            <TableQueue />
+          <div className="App-TableQueue">
+            <p>Voici la liste d'attente</p>
+            <div>
+              <TableQueue />
+            </div>
           </div>
-        </div>
       )
     }
   }

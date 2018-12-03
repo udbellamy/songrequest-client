@@ -1,13 +1,7 @@
 import { observable } from 'mobx';
 
 const queueStore = observable({ 
-  rows: [{
-    _id: "",
-    artist: "",
-    song: "",
-    user: "",
-    link: ""
-  }],
+  rows: [],
   page: 0,
   rowsPerPage: 10,
 });

@@ -15,11 +15,14 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import DeleteForever from '@material-ui/icons/DeleteForever';
+import CircularIndeterminate from './ProgressIcon.js';
+import Refresh from '@material-ui/icons/Refresh';
 import Link from '@material-ui/icons/Link';
 import './Material.css';
 import { inject, observer } from 'mobx-react';
 import StoreFunctions from './utils/StoreFunctions.js';
 import DatabaseFunctions from './utils/DatabaseFunctions.js';
+import Button from '@material-ui/core/Button';
 
 const actionsStyles = theme => ({
   root: {
@@ -112,9 +115,12 @@ const styles = theme => ({
   tableWrapper: {
     overflowX: 'auto',
   },
+  button: {
+    width: '3rem'
+  }
 });
 
-@inject('QueueStore')
+@inject('QueueStore', 'SearchStore')
 @observer
 class CustomPaginationActionsTable extends React.Component {
 
@@ -143,10 +149,31 @@ class CustomPaginationActionsTable extends React.Component {
 
   displayLinkIcon(link){
     const { QueueStore } = this.props;
-    const { rows } = QueueStore;    
     if ( link ) {
         return <a href={link} target="Chorus"><Link className="material-icons md-link"/></a>
     }
+  }
+
+  reloadButtonContent(){
+    const { SearchStore } = this.props;
+    if ( SearchStore.search === false ) {
+      return <Refresh/>
+    }
+
+    else if ( SearchStore.search === true ) {
+      return <CircularIndeterminate/>
+    }
+  }
+
+  reloadButton(){
+    const { classes } = this.props;
+    return  <Button
+              onClick={e => DatabaseFunctions.getQueue(e)}
+              variant="contained"
+              color="primary"
+              className={classes.button}
+            > {this.reloadButtonContent()}
+            </Button>
   }
 
   render() {
@@ -165,6 +192,7 @@ class CustomPaginationActionsTable extends React.Component {
                 <TableCell>Chanson</TableCell>
                 <TableCell>User</TableCell>
                 <TableCell>Action</TableCell>
+                <TableCell>{this.reloadButton()}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

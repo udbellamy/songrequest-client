@@ -24,33 +24,43 @@ const styles = theme => ({
 class NicknamePrompt extends React.Component {
 
   handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    const { UserStore } = this.props;
+    
+    if ( UserStore.nickname ) {
+      if (e.key === 'Enter') {
+        StoreFunctions.changeStoreValue({
+          storeKey: "page",
+          value: "search",
+          store: "ViewStore"
+        })
+        
+        StoreFunctions.changeStoreValue({
+          storeKey: "nicknameSet",
+          value: true,
+          store: "UserStore"
+        })
+      }
+    }
+  }
+
+  handleClick() {
+    const { UserStore } = this.props;
+
+    if ( UserStore.nickname ) {
+      
       StoreFunctions.changeStoreValue({
         storeKey: "page",
         value: "search",
         store: "ViewStore"
       })
-      
+  
       StoreFunctions.changeStoreValue({
         storeKey: "nicknameSet",
         value: true,
         store: "UserStore"
-    })
+      })
+      
     }
-  }
-
-  handleClick() {
-    StoreFunctions.changeStoreValue({
-      storeKey: "page",
-      value: "search",
-      store: "ViewStore"
-    })
-
-    StoreFunctions.changeStoreValue({
-      storeKey: "nicknameSet",
-      value: true,
-      store: "UserStore"
-  })
   }
 
   render() {
