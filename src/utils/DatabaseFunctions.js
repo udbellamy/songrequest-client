@@ -56,8 +56,7 @@ function postLinkToQueue (link, user ) {
   axios.post(`https://songrequest-backend.herokuapp.com/api/postLinkToQueue?link=${link}&user=${user}`)
 }
 
-function getQueue (event) {
-  event.preventDefault();
+function getQueue () {
   StoreFunctions.changeStoreValue({
     storeKey: "search",
     value: true,
@@ -77,6 +76,23 @@ function getQueue (event) {
   })
 }
 
+function getQueueLight() {
+  StoreFunctions.changeStoreValue({
+    storeKey: "search",
+    value: true,
+    store: "SearchStore"
+  }) 
+
+  axios.get(`https://songrequest-backend.herokuapp.com/api/getQueue`).then(function (axiosTestResult) {
+    StoreFunctions.changeStoreValue({
+      storeKey: "rows",
+      value: axiosTestResult.data.Queue,
+      store: "QueueStore"
+    })
+  })
+}
+
+
 function deleteSongFromQueue (_id ) {
   axios.delete(`https://songrequest-backend.herokuapp.com/api/deleteSongById?_id=${_id}`)
 }
@@ -91,6 +107,7 @@ export default {
   postSongToQueue,
   deleteSongFromQueue,
   postLinkToQueue,
+  getQueueLight,
 
 }
 

@@ -23,6 +23,7 @@ import { inject, observer } from 'mobx-react';
 import StoreFunctions from './utils/StoreFunctions.js';
 import DatabaseFunctions from './utils/DatabaseFunctions.js';
 import Button from '@material-ui/core/Button';
+import Switches from './Select.js'
 
 const actionsStyles = theme => ({
   root: {
@@ -113,8 +114,8 @@ const styles = theme => ({
     minWidth: 200,
   },
   tableButton: {
-    minWidth: '3rem',
-    width: '3rem'
+    minWidth: '8rem',
+    width: '8rem'
   },
   tableWrapper: {
     overflowX: 'auto',
@@ -124,7 +125,7 @@ const styles = theme => ({
   }
 });
 
-@inject('QueueStore', 'SearchStore')
+@inject('QueueStore', 'SearchStore', 'ViewStore')
 @observer
 class CustomPaginationActionsTable extends React.Component {
 
@@ -161,9 +162,11 @@ class CustomPaginationActionsTable extends React.Component {
     const { SearchStore } = this.props;
     if ( SearchStore.search === false ) {
       return <Refresh/>
+
     }
 
     else if ( SearchStore.search === true ) {
+
       return <CircularIndeterminate/>
     }
   }
@@ -171,7 +174,7 @@ class CustomPaginationActionsTable extends React.Component {
   reloadButton(){
     const { classes } = this.props;
     return  <Button
-              onClick={e => DatabaseFunctions.getQueue(e)}
+              onClick={e => DatabaseFunctions.getQueue()}
               variant="contained"
               color="primary"
               className={classes.button}
@@ -190,21 +193,21 @@ class CustomPaginationActionsTable extends React.Component {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                <TableCell>Lien</TableCell>
+                <TableCell>User</TableCell>
                 <TableCell>Artiste</TableCell>
                 <TableCell>Chanson</TableCell>
-                <TableCell>User</TableCell>
-                <TableCell className={classes.tableButton}>{this.reloadButton()}</TableCell>
+                <TableCell>Lien</TableCell>
+                <TableCell className={classes.tableButton}><Switches />{this.reloadButton()}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
                 return (
                   <TableRow key={row._id}>
-                    <TableCell>{this.displayLinkIcon(row.link)}</TableCell>
+                    <TableCell>{row.user}</TableCell>
                     <TableCell>{row.artist}</TableCell>
                     <TableCell>{row.song}</TableCell>
-                    <TableCell>{row.user}</TableCell>
+                    <TableCell>{this.displayLinkIcon(row.link)}</TableCell>
                     <TableCell><DeleteForever className="material-icons md-delete" onClick={e => this.handleDeleteClick(rows, row._id)}/></TableCell>
                   </TableRow>
                 );
