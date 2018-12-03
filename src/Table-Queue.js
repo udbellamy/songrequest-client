@@ -196,7 +196,7 @@ class CustomPaginationActionsTable extends React.Component {
                 <TableCell>User</TableCell>
                 <TableCell>Artiste</TableCell>
                 <TableCell>Chanson</TableCell>
-                <TableCell>Lien</TableCell>
+                <TableCell className={classes.button}>Lien</TableCell>
                 <TableCell className={classes.tableButton}><Switches />{this.reloadButton()}</TableCell>
               </TableRow>
             </TableHead>
