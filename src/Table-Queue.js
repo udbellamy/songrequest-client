@@ -28,7 +28,7 @@ const actionsStyles = theme => ({
   root: {
     flexShrink: 0,
     color: theme.palette.text.secondary,
-    marginLeft: theme.spacing.unit * 2.5,
+    marginLeft: theme.spacing.unit * 2.5
   },
 });
 
@@ -112,6 +112,10 @@ const styles = theme => ({
   table: {
     minWidth: 200,
   },
+  tableButton: {
+    minWidth: '3rem',
+    width: '3rem'
+  },
   tableWrapper: {
     overflowX: 'auto',
   },
@@ -148,7 +152,6 @@ class CustomPaginationActionsTable extends React.Component {
   };
 
   displayLinkIcon(link){
-    const { QueueStore } = this.props;
     if ( link ) {
         return <a href={link} target="Chorus"><Link className="material-icons md-link"/></a>
     }
@@ -191,8 +194,7 @@ class CustomPaginationActionsTable extends React.Component {
                 <TableCell>Artiste</TableCell>
                 <TableCell>Chanson</TableCell>
                 <TableCell>User</TableCell>
-                <TableCell>Action</TableCell>
-                <TableCell>{this.reloadButton()}</TableCell>
+                <TableCell className={classes.tableButton}>{this.reloadButton()}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
