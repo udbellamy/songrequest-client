@@ -21,7 +21,8 @@ class Switches extends React.Component {
       store: "ViewStore"
     })
     if (event.target.checked) {
-      this.timer = setInterval(DatabaseFunctions.getQueue(event.target.checked), 20000)
+      DatabaseFunctions.getQueue(event.target.checked)
+      this.timer = setInterval(() => {DatabaseFunctions.getQueue(true)}, 15000);
     }
     else {
       clearInterval(this.timer)
